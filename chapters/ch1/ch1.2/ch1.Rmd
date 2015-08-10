@@ -4,13 +4,10 @@
 Examples of time series data
 
 ### Example 1.1 J&J Quarterlies
-
-```r
+```{r}
 library(astsa)
 plot(jj, type = "o", ylab = "Quarterly Earnings per Share")
 ```
-
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
 
 Note the generally upward trend with minor variations. Variations
 increase as time goes on, as well.
@@ -18,57 +15,22 @@ increase as time goes on, as well.
 ### Example 1.2 Global Warming
 Time series data is its own data type in R with a default print function
 
-
-```r
+```{r}
 head(gtemp)
-```
-
-```
-## [1] -0.28 -0.21 -0.26 -0.27 -0.32 -0.32
-```
-
-```r
 class(gtemp)
-```
-
-```
-## [1] "ts"
-```
-
-```r
 summary(gtemp)
-```
-
-```
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -0.39000 -0.21750 -0.05000 -0.02162  0.09750  0.62000
-```
-
-```r
 str(gtemp)
-```
-
-```
-##  Time-Series [1:130] from 1880 to 2009: -0.28 -0.21 -0.26 -0.27 -0.32 -0.32 -0.29 -0.36 -0.27 -0.17 ...
-```
-
-```r
 plot(gtemp, type = "o", ylab = "Global Temperature Deviations")
 ```
-
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 Deviations from global mean temperature 1951 - 1980. Note the major
 upward trend, but with other oscillations throughout.
 
 ### Example 1.3 Speech data
 0.1 sec sample of recorded speech for *aaaaaaaaahhhhhh*.
-
-```r
+```{r}
 plot(speech)
 ```
-
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 Hugely repetitive, regular periodicities.  Can use spectral analysis
 (eigenbased methods) to create "signature" in further analysis,
@@ -76,12 +38,9 @@ matching signature to other tokens can be used to identify
 similarities, cluster, etc.
 
 ### Example 1.4 NYSE
-
-```r
+```{r}
 plot(nyse, ylab = "NYSE Returns")
 ```
-
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 Mostly stable average w/ lots of variance.  Huge drop/volatility
 corresponds to drop in Oct. 1987.
@@ -90,16 +49,10 @@ corresponds to drop in Oct. 1987.
 Southern Oscillation Index (SOI) corresponds to El Nino, Recruitment
 to number of new fish.
 
-
-```r
+```{r}
 par(mfrow = c(2, 1)) ## 2x1 grid for plotting
 plot(soi, ylab = "", xlab = "", main = "Southern Oscillation Index")
 plot(rec, ylab = "", xlab = "", main = "Recruitment")
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
-
-```r
 par(mfrow = c(1, 1)) ## return to default
 ```
 
@@ -112,8 +65,7 @@ fMRI data (brain imaging) from various brain locations on five
 subjects w/ periodic brushing of their hands.  Response measures
 levels of activation in brain.
 
-
-```r
+```{r}
 par(
     mfrow = c(2, 1), # stack images
     mar = c(3, 2, 1, 0) + 0.5, # set margins
@@ -123,57 +75,22 @@ par(
 ### Example 1.2 Global Warming
 Time series data is its own data type in R with a default print function
 
-
-```r
+```{r}
 head(gtemp)
-```
-
-```
-## [1] -0.28 -0.21 -0.26 -0.27 -0.32 -0.32
-```
-
-```r
 class(gtemp)
-```
-
-```
-## [1] "ts"
-```
-
-```r
 summary(gtemp)
-```
-
-```
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -0.39000 -0.21750 -0.05000 -0.02162  0.09750  0.62000
-```
-
-```r
 str(gtemp)
-```
-
-```
-##  Time-Series [1:130] from 1880 to 2009: -0.28 -0.21 -0.26 -0.27 -0.32 -0.32 -0.29 -0.36 -0.27 -0.17 ...
-```
-
-```r
 plot(gtemp, type = "o", ylab = "Global Temperature Deviations")
 ```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
 Deviations from global mean temperature 1951 - 1980. Note the major
 upward trend, but with other oscillations throughout.
 
 ### Example 1.3 Speech data
 0.1 sec sample of recorded speech for *aaaaaaaaahhhhhh*.
-
-```r
+```{r}
 plot(speech)
 ```
-
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
 Hugely repetitive, regular periodicities.  Can use spectral analysis
 (eigenbased methods) to create "signature" in further analysis,
@@ -181,12 +98,9 @@ matching signature to other tokens can be used to identify
 similarities, cluster, etc.
 
 ### Example 1.4 NYSE
-
-```r
+```{r}
 plot(nyse, ylab = "NYSE Returns")
 ```
-
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 Mostly stable average w/ lots of variance.  Huge drop/volatility
 corresponds to drop in Oct. 1987.
@@ -195,16 +109,10 @@ corresponds to drop in Oct. 1987.
 Southern Oscillation Index (SOI) corresponds to El Nino, Recruitment
 to number of new fish.
 
-
-```r
+```{r}
 par(mfrow = c(2, 1)) ## 2x1 grid for plotting
 plot(soi, ylab = "", xlab = "", main = "Southern Oscillation Index")
 plot(rec, ylab = "", xlab = "", main = "Recruitment")
-```
-
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
-
-```r
 par(mfrow = c(1, 1)) ## return to default
 ```
 
@@ -217,8 +125,7 @@ fMRI data (brain imaging) from various brain locations on five
 subjects w/ periodic brushing of their hands.  Response measures
 levels of activation in brain.
 
-
-```r
+```{r}
 par(mfrow = c(2, 1), # stack images
     mar = c(3, 2, 1, 0) + 0.5, # set margins
     mgp = c(1.6, .6, 0)) # margin line (closer titles)
@@ -234,8 +141,6 @@ ts.plot(fmri1[,6:9],
         main = "Thalamus & Cerebellum")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
-
 Similar periods, but T&C has more variance & lower amplitude than
 Cortex. Both respond to the stimulus, but cortex responds more strongly.
 
@@ -243,14 +148,11 @@ Cortex. Both respond to the stimulus, but cortex responds more strongly.
 Seismic data from the arrivals of waves from a recording station in
 Scandinavia.
 
-
-```r
+```{r}
 par(mfrow = c(2, 1))
 plot(EQ5, main = "Earthquake")
 plot(EXP6, main = "Explosion")
 ```
-
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
 Explosions start with a small burst, become small waves, then rapidly
 increase in amplitude before steadily diminishing.
@@ -307,16 +209,13 @@ an average of the current value and its immediate neighbors (both past
 
 $$ v_t = \frac{1}{3}\sum_{t = -1}^{1} w_t$$
 
-
-```r
+```{r}
 w <- rnorm(500, 0, 1)
 v <- filter(w, sides = 2, filter = rep(1/3, 3))
 par(mfrow = c(2, 1))
 plot.ts(w, main = "White Noise")
 plot.ts(v, main = "Moving Average")
 ```
-
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
 
 A linear combination of values in a TS are referred to as a
 filtered series, hence `filter`.
@@ -341,14 +240,11 @@ the past two values of the series, leading us to the term
 values, because the equation also depends on the initial conditions
 $x_0$ and $x_{-1}$. For now, assume we know these values.
 
-
-```r
+```{r}
 w <- rnorm(550, 0, 1) #extra 50 to avoid startup issues
 x <- filter(w, filter = c(1, -0.9), method = "recursive")[-(1:50)]
 plot.ts(x, main = "autogression")
 ```
-
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 Note the periodic behavior, similar to the speech data above.
 
@@ -369,8 +265,7 @@ noise:
 
 $$x_t = \delta t + \sum_{j = 1}^t w_j$$
 
-
-```r
+```{r}
 set.seed(154)
 ## without drift
 w <- rnorm(200, 0, 1)
@@ -383,5 +278,47 @@ lines(x, lty = "dotted") ## no drift
 lines(.2*(1:200), lty = "dashed") ## y = 0 + 0.2x
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+### Example 1.12 Signal in Noise
+Many models have an underlying signal w/ consistent, periodic random
+noise. Consider:
 
+$$x_t = 2 \cos(2\pi t / 50 + 0.6\pi ) + w_t$$
+
+for $t = 1, 2, \ldots, 500$.  The first term is *signal*. Aside: a
+sinusoidal waveform can be expressed as:
+
+$$A\cos(2\pi\omega t + \phi)$$
+
+where $A$ is the amplitude, $\omega$ is the frequency of oscillation, and $\phi$ is a
+phase shift.  In the above model, $A = 2$, $\omega = 1/50$ (i.e.g, one
+cycle every fifty $t$), and $\phi = 0.6\pi$.
+
+An additive noise term $w_t$ with standard deviation $\sigma_w$ drawn
+from a $N(0, \sigma_w)$ distribution can be added to vector of points
+drawn from the sinusoidal function to illustrate the signal-noise
+relationship.
+
+The degree to which the signal is obscured depends on $A$ and
+$\sigma_w$. This ratio (or some derived function of it) is the
+signal-to-noise ration (NR).  The larger the ratio, the easier it is
+to detect the signal.
+
+```{r}
+cs <- 2*cos(2*pi*1:500/50 + 0.6*pi)
+w <- rnorm(500, 0, 1)
+par(mfrow = c(3, 1), mar = c(3, 2, 2, 1), cex.main = 1.5)
+plot.ts(cs, main = expression(2*cos(2*pi*t/50 + 0.6*pi)))
+plot.ts(cs + w, main = expression(2*cos(2*pi*t/50 + 0.6*pi) + N(0, 1)))
+plot.ts(cs + w*5, main = expression(2*cos(2*pi*t/50 + 0.6*pi) + N(0, 5)))
+```
+
+Generally, emphasis is placed on the a simple additive form such as:
+
+$$x_t = s_t + v_t$$
+
+where $s_t$ denotes some unknown signal and $v_t$ denoves some TS that
+may be white or autocorrelated. In this case, primary importance is on
+estimating $s_t$.
+
+In other cases, spectral analysis can be used to detect regular or
+period signals, such as described above.
