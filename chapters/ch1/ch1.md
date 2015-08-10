@@ -1,8 +1,9 @@
-## Chapter
+# Chapter 1
 
-### Section 1.2
+## Section 1.2
 Examples of time series data
 
+### Example 1.1 J&J Quarterlies
 
 ```r
 library(astsa)
@@ -10,6 +11,11 @@ plot(jj, type = "o", ylab = "Quarterly Earnings per Share")
 ```
 
 ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
+
+Note the generally upward trend with minor variations. Variations
+increase as time goes on, as well.
+
+### Example 1.2 Global Warming
 Time series data is its own data type in R with a default print function
 
 
@@ -51,8 +57,12 @@ plot(gtemp, type = "o", ylab = "Global Temperature Deviations")
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
-More examples from the book
 
+Deviations from global mean temperature 1951 - 1980. Note the major
+upward trend, but with other oscillations throughout.
+
+### Example 1.3 Speech data
+0.1 sec sample of recorded speech for *aaaaaaaaahhhhhh*.
 
 ```r
 plot(speech)
@@ -60,18 +70,318 @@ plot(speech)
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
+Hugely repetitive, regular periodicities.  Can use spectral analysis
+(eigenbased methods) to create "signature" in further analysis,
+matching signature to other tokens can be used to identify
+similarities, cluster, etc.
+
+### Example 1.4 NYSE
+
 ```r
 plot(nyse, ylab = "NYSE Returns")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+
+Mostly stable average w/ lots of variance.  Huge drop/volatility
+corresponds to drop in Oct. 1987.
+
+#### Example 1.5 El Nino and Fish Pop.
+Southern Oscillation Index (SOI) corresponds to El Nino, Recruitment
+to number of new fish.
+
 
 ```r
-par(mfrow = c(2, 1))
+par(mfrow = c(2, 1)) ## 2x1 grid for plotting
 plot(soi, ylab = "", xlab = "", main = "Southern Oscillation Index")
 plot(rec, ylab = "", xlab = "", main = "Recruitment")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
+```r
+par(mfrow = c(1, 1)) ## return to default
+```
+
+Both repetitive.  SOI is faster period than recruitment.  Recruitment
+has two underlying oscillations. Faster period repeating yearly, but
+notice drops approx. 4 years apart.
+
+### Example 1.6 fMRI Imaging
+fMRI data (brain imaging) from various brain locations on five
+subjects w/ periodic brushing of their hands.  Response measures
+levels of activation in brain.
+
+
+```r
+par(
+    mfrow = c(2, 1), # stack images
+    mar = c(3, 2, 1, 0) + 0.5, # set margins
+    mgp = c(1.6, .6, 0)) # margin line (closer titles)
+```
+
+### Example 1.2 Global Warming
+Time series data is its own data type in R with a default print function
+
+
+```r
+head(gtemp)
+```
+
+```
+## [1] -0.28 -0.21 -0.26 -0.27 -0.32 -0.32
+```
+
+```r
+class(gtemp)
+```
+
+```
+## [1] "ts"
+```
+
+```r
+summary(gtemp)
+```
+
+```
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.39000 -0.21750 -0.05000 -0.02162  0.09750  0.62000
+```
+
+```r
+str(gtemp)
+```
+
+```
+##  Time-Series [1:130] from 1880 to 2009: -0.28 -0.21 -0.26 -0.27 -0.32 -0.32 -0.29 -0.36 -0.27 -0.17 ...
+```
+
+```r
+plot(gtemp, type = "o", ylab = "Global Temperature Deviations")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+
+Deviations from global mean temperature 1951 - 1980. Note the major
+upward trend, but with other oscillations throughout.
+
+### Example 1.3 Speech data
+0.1 sec sample of recorded speech for *aaaaaaaaahhhhhh*.
+
+```r
+plot(speech)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+
+Hugely repetitive, regular periodicities.  Can use spectral analysis
+(eigenbased methods) to create "signature" in further analysis,
+matching signature to other tokens can be used to identify
+similarities, cluster, etc.
+
+### Example 1.4 NYSE
+
+```r
+plot(nyse, ylab = "NYSE Returns")
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+
+Mostly stable average w/ lots of variance.  Huge drop/volatility
+corresponds to drop in Oct. 1987.
+
+### Example 1.5 El Nino and Fish Pop.
+Southern Oscillation Index (SOI) corresponds to El Nino, Recruitment
+to number of new fish.
+
+
+```r
+par(mfrow = c(2, 1)) ## 2x1 grid for plotting
+plot(soi, ylab = "", xlab = "", main = "Southern Oscillation Index")
+plot(rec, ylab = "", xlab = "", main = "Recruitment")
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+```r
+par(mfrow = c(1, 1)) ## return to default
+```
+
+Both repetitive.  SOI is faster period than recruitment.  Recruitment
+has two underlying oscillations. Faster period repeating yearly, but
+notice drops approx. 4 years apart.
+
+### Example 1.6 fMRI Imaging
+fMRI data (brain imaging) from various brain locations on five
+subjects w/ periodic brushing of their hands.  Response measures
+levels of activation in brain.
+
+
+```r
+par(mfrow = c(2, 1), # stack images
+    mar = c(3, 2, 1, 0) + 0.5, # set margins
+    mgp = c(1.6, .6, 0)) # margin line (closer titles)
+ts.plot(fmri1[,2:5],
+        lty = c(1:2, 4:5),
+        ylab = "BOLD",
+        xlab = "",
+        main = "Cortex")
+ts.plot(fmri1[,6:9],
+        lty = c(1:2, 4:5),
+        ylab = "BOLD",
+        xlab = "",
+        main = "Thalamus & Cerebellum")
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+
+Similar periods, but T&C has more variance & lower amplitude than
+Cortex. Both respond to the stimulus, but cortex responds more strongly.
+
+### Example 1.7 Earthquakes & Explosions
+Seismic data from the arrivals of waves from a recording station in
+Scandinavia.
+
+
+```r
+par(mfrow = c(2, 1))
+plot(EQ5, main = "Earthquake")
+plot(EXP6, main = "Explosion")
+```
+
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+
+Explosions start with a small burst, become small waves, then rapidly
+increase in amplitude before steadily diminishing.
+
+Quakes start small, increase to a steady but moderately strong wave,
+then increase to large amplitude, but with a longer period. Waves
+decrease in strength slightly, then stay
+generally the same amplitude until the end of recording.
+
+## Section 1.3 Time Series Statistical Models
+ - Need math/stat models that give plausible descriptions for time and
+   frequency dependent data.
+ - Assume TS data is defined as a collection of RVs indexed according
+   to time they are observed.
+ - Denotes $\{x_t\}$ as vector of random variables indexed by $t$
+   s.t. $t = 0, \pm 1, \pm 2, \ldots$ or some subset of integers and
+   values are observed for each time period, in order, and refer to
+   a stochastic (random) process.
+ - The observed values of $\{x_t\}$ are a realization of the
+   stochastic process, and referred to as the time series.
+ - Generally we *can* observe the values at any continuous point in time
+   and conceptually are dealing with continuous RVs. Because of
+   restrictions in data collection, we are typically forced to use a
+   discrete time parameter, however.
+ - Theoretical developments assume that continuous parameter time
+   series should be specified in terms of finite-dimensional
+   distribution functions defined over a *finite* number of points,
+   allowing for a suitable definition of the periods indexed by $t$.
+ - Insufficient sampling rates can lead to aliasing, discussed later.
+ - Generally we suppose that adjacent points in time are correlated,
+   so $x_t$ depends in some way on the values $x_{t - 1}, x_{t - 2},
+   \ldots$
+
+## Example 1.8 White Noise
+say we have uncorrelated random variables, $w_t$ with mean 0 and
+variance $\sigma^2_w$. The TS generated from uncorrelated variables is
+*white noise*. Denote white noise processes as $w_t \sim wn(0,
+\sigma^2_w)$. This is analogous to white light, indicating that all
+possible period oscillations (waves) are present with equal strength.
+
+When necessary, iid assumptions for $w_t$ are represented as $w_t \sim
+iid(0, \sigma^2_w)$
+
+If the stochastic behavior could simply be explained by white noise,
+we can use classical statistics because of the iid
+assumption. However, serial correlation and smoothness of TS data
+requires more sophisticated methods.
+
+### Example 1.9 Moving Averages
+Instead of a white noise series $w_t$, we can replace it with a moving
+average that smooths the series. For example, replace the noise with
+an average of the current value and its immediate neighbors (both past
+& future).
+
+$$ v_t = \frac{1}{3}\sum_{t = -1}^{1} w_t$$
+
+
+```r
+w <- rnorm(500, 0, 1)
+v <- filter(w, sides = 2, filter = rep(1/3, 3))
+par(mfrow = c(2, 1))
+plot.ts(w, main = "White Noise")
+plot.ts(v, main = "Moving Average")
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+
+A linear combination of values in a TS are referred to as a
+filtered series, hence `filter`.
+
+Note that the moving average *smooths* the TS, making slower
+oscillations more obvious but removing or diminishing more rapid
+oscillations. See the SOI and fMRI figures above.
+
+The speech series and Recruitment series differ from the moving
+average because one type of pattern in particular is predominant,
+generating a sinusoidal wave.
+
+## Example 1.10 Autoregressions
+Suppose $w_t$ is simply an input to a second-order equation:
+
+$$x_t = x_{t-1} - 0.9x_{t-2} + w_t$$
+
+for $t = 1, 2, \ldots, 500$. In this case, the equation represents a
+regression of the current value of $x_t$ of the TS as a function of
+the past two values of the series, leading us to the term
+*autoregression*. Note that this leads to a problem with startup
+values, because the equation also depends on the initial conditions
+$x_0$ and $x_{-1}$. For now, assume we know these values.
+
+
+```r
+w <- rnorm(550, 0, 1) #extra 50 to avoid startup issues
+x <- filter(w, filter = c(1, -0.9), method = "recursive")[-(1:50)]
+plot.ts(x, main = "autogression")
+```
+
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+
+Note the periodic behavior, similar to the speech data above.
+
+Autoregressive models are widely used for many observed TSs.
+
+## Example 1.11 Random Walk with Drift
+For trends like the global warming data, we often use a random walk
+with drift:
+
+$$x_t = \delta + x_{t-1}+w_t$$
+
+with initial condition $x_0 = 0$, where $w_t$ is white noise. $\delta$
+represents the drift, and $\delta = 0$ denotes a random walk. We
+describe it as such because the value at time $t$ is the value at time
+$t-1$ plus some random movement determined by $w_t$. This model can
+also be written as an expression of the cumulative sum of the white
+noise:
+
+$$x_t = \delta t + \sum_{j = 1}^t w_j$$
+
+
+```r
+set.seed(154)
+## without drift
+w <- rnorm(200, 0, 1)
+x <- cumsum(w)
+## with drift
+wd <- w + .2
+xd <- cumsum(wd)
+plot.ts(xd, ylim = c(-5, 55), main = "random walk")
+lines(x, lty = "dotted") ## no drift
+lines(.2*(1:200), lty = "dashed") ## y = 0 + 0.2x
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
 
