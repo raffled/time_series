@@ -1,0 +1,27 @@
+## Chapter
+
+### Section 1.2
+Examples of time series data
+```{r}
+library(astsa)
+plot(jj, type = "o", ylab = "Quarterly Earnings per Share")
+``
+Time series data is its own data type in R with a default print function
+
+```{r}
+head(gtemp)
+class(gtemp)
+summary(gtemp)
+str(gtemp)
+plot(gtemp, type = "o", ylab = "Global Temperature Deviations")
+```
+
+plot(speech)
+
+plot(nyse, ylab = "NYSE Returns")
+
+par(mfrow = c(2, 1))
+plot(soi, ylab = "", xlab = "", main = "Southern Oscillation Index")
+plot(rec, ylab = "", xlab = "", main = "Recruitment")
+
+
